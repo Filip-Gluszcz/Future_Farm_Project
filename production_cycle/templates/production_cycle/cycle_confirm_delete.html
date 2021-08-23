@@ -1,0 +1,11 @@
+{% extends 'production_cycle/main.html' %}
+{% load static %}
+{% block content %}
+
+<form method="post">
+    {% csrf_token %}
+    <p>Usunąć cykl "{{ object.id }}"?</p>
+    <input type="submit" value="potwierdz">
+</form>
+
+{% endblock %}
