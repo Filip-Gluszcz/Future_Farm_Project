@@ -1,0 +1,66 @@
+{% extends 'production_cycle/base.html' %} 
+{% load static %} 
+{% block content %}
+
+{% for cycle in cycles reversed %}
+
+<div class="grid-item">
+  <h1 id="welcome-title">Uboje</h1>
+  <table class="table table-borderless">
+    <thead>
+      <th>Data</th>
+      <th>Cykl</th>
+      <th>Ilość</th>
+    </thead>
+    <tbody>
+      {% for slaughter in cycle.slaughter_set.all reversed %}
+      <tr>
+        <td>{{slaughter.date}}</td>
+        <td>{{slaughter.cycle}}</td>
+        <td>{{slaughter.quantity}}</td>
+        <td>
+          <a class="btn btn-sm btn-warning" href="{% url 'updateSlaughter' slaughter.id%}">Edytuj</a>
+          <a class="btn btn-sm btn-danger" href="{% url 'deleteSlaughter' slaughter.id%}">Usuń</a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+<div class="grid-item">
+  <h1 id="welcome-title">Aktualny rozmiar stada:</h1>
+  <br>
+  <h3>{{cycle.current_herd_size}}</h3>
+  <div class="border-top border-bottom p-3 transaction">
+    <a href="{% url 'createCycle' %}" class="btn btn-info">Dodaj</a>
+    <a href="{% url 'cycleDetail' cycle.id %}" class="btn btn-info">info</a>
+    <br />
+  </div>
+  <br>
+  <h1 id="welcome-title">Raporty dzienne</h1>
+  <table class="table table-borderless">
+    <thead>
+      <th>Data</th>
+      <th>Dzień cyklu</th>
+      <th>Upadki</th>
+      <th>Cykl</th>
+    </thead>
+    <tbody>
+      {% for day in cycle.day_set.all reversed %}
+      <tr>
+        <td>{{day.date}}</td>
+        <td>{{day.cycle_day}}</td>
+        <td>{{day.deads}}</td>
+        <td>{{day.cycle}}</td>
+        <td>
+          <a class="btn btn-sm btn-info" href="{% url 'day' day.id%}">Info</a>
+          <a class="btn btn-sm btn-warning" href="{% url 'updateDay' day.id%}">Edytuj</a>
+          <a class="btn btn-sm btn-info" href="{% url 'createDay' %}">Dodaj</a>
+          <a class="btn btn-sm btn-danger" href="{% url 'deleteDay' day.id%}">Usuń</a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endfor %} {% endblock %}

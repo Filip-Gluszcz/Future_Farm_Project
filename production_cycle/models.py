@@ -57,6 +57,7 @@ class FeedDelivery(models.Model):
         max_length=2, choices=FEED_CHOICES, default=STARTER)
     quantity = models.FloatField(default=0)
     price = models.FloatField(default=1)
+    cycle = models.ForeignKey("Cycle", on_delete=models.CASCADE)
 
 
 class Standards(models.Model):

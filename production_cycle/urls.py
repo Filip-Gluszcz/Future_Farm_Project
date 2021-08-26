@@ -2,18 +2,22 @@ from django.urls import path
 from production_cycle import views
 
 urlpatterns = [
-    path('cycles/', views.cycles, name='cycles'),
-    path('createCycle/', views.CreateCycleView.as_view(), name='createCycle'),
-    path('cycleDetail/<str:pk>/',
+    path('cycles/', views.CycleListView.as_view(), name='cycles'),
+    path('create-cycle/', views.CycleCreateView.as_view(), name='createCycle'),
+    path('cycle-detail/<str:pk>/',
          views.CycleDetailView.as_view(), name='cycleDetail'),
-    path('deleteCycle/<str:pk>/',
-         views.DeleteCycleView.as_view(), name='deleteCycle'),
-    path('updateCycle/<str:pk>/',
+    path('delete-cycle/<str:pk>/',
+         views.CycleDeleteView.as_view(), name='deleteCycle'),
+    path('update-cycle/<str:pk>/',
          views.CycleUpdateView.as_view(), name='updateCycle'),
-    path('createSlaughter/<str:pk>',
-         views.create_slaughter, name='createSlaughter'),
-    path('createDay/<str:pk>', views.create_day, name='createDay'),
-    path('updateDay/<str:pk>', views.update_day, name='updateDay'),
+    path('create-slaugter/', views.SlaughterCreateView.as_view(),
+         name='createSlaughter'),
+    path('update-slaugter/<str:pk>',
+         views.SlautherUpdateView.as_view(), name='updateSlaughter'),
+    path('delete-slaugter/<str:pk>',
+         views.SlaugterDeleteView.as_view(), name='deleteSlaughter'),
+    path('create-day/', views.DayCreateView.as_view(), name='createDay'),
+    path('update-day/<str:pk>', views.DayUpdateView.as_view(), name='updateDay'),
     path('day/<str:pk>', views.day, name='day'),
-    path('deleteDay/<str:pk>', views.delete_day, name='deleteDay')
+    path('delete-day/<str:pk>', views.DayDeleteView.as_view(), name='deleteDay')
 ]

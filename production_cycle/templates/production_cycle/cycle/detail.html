@@ -1,0 +1,43 @@
+{% extends 'production_cycle/base.html' %} {% load static %} {% block content %}
+
+<table class="table table-borderless">
+  <p>Nr cyklu: {{object.id}}</p>
+  <p>Data wstawienia: {{object.date_of_insertion}}</p>
+  <p>Hybryd: {{object.hybryd}}</p>
+  <p>Rozmiar stada: {{object.herd_size}}</p>
+  <p>Średnia waga pisklęcia: {{object.chick_avarage_weight}}</p>
+  <p>Wiek stada reprodukcyjnego:{{object.age_of_the_reproductive_stock}}</p>
+  <p>Wylegarnia: {{object.hatchery}}</p>
+  <p>Aktualny rozmiar stada: {{object.current_herd_size}}</p>
+  <div>
+    <a class="btn btn-sm btn-info" href="{% url 'cycles'%}">Wróć</a>
+    <a class="btn btn-sm btn-warning" href="{% url 'updateCycle' object.id %}">Edytuj</a>
+    <a class="btn btn-sm btn-danger" href="{% url 'deleteCycle' object.id %}">Usuń</a>
+    <a class="btn btn-sm btn-info" href="{% url 'createSlaughter' %}">Dodaj ubój</a>
+  </div>
+</table>
+<div class="grid-item">
+  <h1 id="welcome-title">Uboje</h1>
+  <table class="table table-borderless">
+    <thead>
+      <th>Data</th>
+      <th>Cykl</th>
+      <th>Ilość</th>
+    </thead>
+    <tbody>
+      {% for slaughter in cycle.slaughter_set.all reversed %}
+      <tr>
+        <td>{{slaughter.date}}</td>
+        <td>{{slaughter.cycle}}</td>
+        <td>{{slaughter.quantity}}</td>
+        <td>
+          <a class="btn btn-sm btn-warning" href="{% url 'updateSlaughter' slaughter.id%}">Edytuj</a>
+          <a class="btn btn-sm btn-danger" href="{% url 'deleteSlaughter' slaughter.id%}">Usuń</a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+{% endblock %}

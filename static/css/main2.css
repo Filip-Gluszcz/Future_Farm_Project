@@ -14,22 +14,14 @@ body {
   font-family: "Poppins";
 }
 
-/* #conteiner {
+#conteiner{
     display: grid;
     grid-template-columns: 1fr 6fr;
     grid-gap: 20px;
     height: 100vh;
-} */
+  }
 
-
-#conteiner{
-  display: grid;
-  grid-template-columns: 1fr 6fr;
-  grid-gap: 20px;
-  height: 100vh;
-}
-
-#sidebar {
+  #sidebar {
     border: 20px;
     background-color: #f2f2f2;
     box-shadow: 3px 0px 5px 1px rgba(0, 0, 0, 0.1);

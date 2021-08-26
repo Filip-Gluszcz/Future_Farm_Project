@@ -1,9 +1,9 @@
 from django.db.models import fields
 from django.forms import ModelForm
-from .models import Day, Cycle, Slaughter
+from .models import Day, Cycle, FeedDelivery, Slaughter
 
 
-class CreateDayForm(ModelForm):
+class DayForm(ModelForm):
     class Meta:
         model = Day
         fields = ['cycle_day', 'deads', 'selection', 'feed_consumption', 'wather_consumption',
@@ -14,15 +14,21 @@ class CreateDayForm(ModelForm):
             self.model.cycle = cycle
 
 
-class CreateCycleForm(ModelForm):
+class CycleForm(ModelForm):
     class Meta:
         model = Cycle
         fields = ['hybryd', 'herd_size', 'chick_avarage_weight',
                   'age_of_the_reproductive_stock', 'hatchery']
 
 
-class CreateSlaughterForm(ModelForm):
+class SlaughterForm(ModelForm):
     class Meta:
         model = Slaughter
         fields = ['cycle', 'day_id', 'quantity', 'weight',
                   'average_weight', 'slaughterhouse']
+
+
+class FeedDeliveryForm(ModelForm):
+    class Meta:
+        model = FeedDelivery
+        fields = ['choices', 'quantity', 'price', 'cycle']
